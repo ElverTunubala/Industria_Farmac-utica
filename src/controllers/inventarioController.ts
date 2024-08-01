@@ -6,8 +6,12 @@ class InventarioController {
         try {
             await InventarioModel.agregarMedicamento(req.body);
             res.status(201).send('Medicamento agregado');
-        } catch (error) {
-            res.status(500).send(error.message);
+        } catch (error: unknown) {
+            if (error instanceof Error) {
+                res.status(500).send(error.message);
+            } else {
+                res.status(500).send('An unknown error occurred.');
+            }
         }
     }
 
@@ -16,26 +20,38 @@ class InventarioController {
             const { id, cantidad } = req.body;
             await InventarioModel.actualizarCantidad(id, cantidad);
             res.status(200).send('Cantidad actualizada');
-        } catch (error) {
-            res.status(500).send(error.message);
-        }
-    }
+        } catch (error: unknown) {
+            if (error instanceof Error) {
+                res.status(500).send(error.message);
+            } else {
+                res.status(500).send('An unknown error occurred.');
+            }
+        } // Asegúrate de cerrar el bloque try-catch aquí
+    } // Aquí se cierra el método actualizarCantidad
 
-    static async eliminarMedicamentosCaducados(req: Request, res: Response) {
+    static async eliminarMedicamentosCaducados(_req: Request, res: Response) {
         try {
             await InventarioModel.eliminarMedicamentosCaducados();
             res.status(200).send('Medicamentos caducados eliminados');
-        } catch (error) {
-            res.status(500).send(error.message);
+        } catch (error: unknown) {
+            if (error instanceof Error) {
+                res.status(500).send(error.message);
+            } else {
+                res.status(500).send('An unknown error occurred.');
+            }
         }
     }
 
-    static async listarMedicamentos(req: Request, res: Response) {
+    static async listarMedicamentos(_req: Request, res: Response) {
         try {
             const medicamentos = await InventarioModel.listarMedicamentos();
             res.status(200).json(medicamentos);
-        } catch (error) {
-            res.status(500).send(error.message);
+        } catch (error: unknown) {
+            if (error instanceof Error) {
+                res.status(500).send(error.message);
+            } else {
+                res.status(500).send('An unknown error occurred.');
+            }
         }
     }
 }

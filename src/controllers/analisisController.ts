@@ -24,12 +24,16 @@ class AnalisisController {
 
             const [rows] = await pool.query(query, params);
             res.status(200).json(rows);
-        } catch (error) {
-            res.status(500).send(error.message);
+        } catch (error: unknown) {
+            if (error instanceof Error) {
+                res.status(500).send(error.message);
+            } else {
+                res.status(500).send('An unknown error occurred.');
+            }
         }
     }
 
-    static async generarEstadisticas(req: Request, res: Response) {
+    static async generarEstadisticas(_req: Request, res: Response) {
         try {
             const query = `
                 SELECT medicamentoId, 
@@ -41,8 +45,12 @@ class AnalisisController {
             `;
             const [rows] = await pool.query(query);
             res.status(200).json(rows);
-        } catch (error) {
-            res.status(500).send(error.message);
+        } catch (error: unknown ) {
+            if (error instanceof Error) {
+                res.status(500).send(error.message);
+            } else {
+                res.status(500).send('An unknown error occurred.');
+            }
         }
     }
 
@@ -71,8 +79,12 @@ class AnalisisController {
             res.header('Content-Type', 'text/csv');
             res.attachment('datos.csv');
             res.send(csv);
-        } catch (error) {
-            res.status(500).send(error.message);
+        } catch (error: unknown) {
+            if (error instanceof Error) {
+                res.status(500).send(error.message);
+            } else {
+                res.status(500).send('An unknown error occurred.');
+            }
         }
     }
 }

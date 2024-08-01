@@ -1,4 +1,6 @@
-import { Router } from 'express';
+// import { Router } from 'express';
+import { Router } from "express";
+
 import InventarioController from '../controllers/inventarioController';
 import PacienteController from '../controllers/pacienteController';
 import AnalisisController from '../controllers/analisisController';
@@ -6,10 +8,12 @@ import AnalisisController from '../controllers/analisisController';
 const router = Router();
 
 // Rutas de inventario
-router.post('/inventario', InventarioController.agregarMedicamento);
-router.put('/inventario', InventarioController.actualizarCantidad);
-router.delete('/inventario/caducados', InventarioController.eliminarMedicamentosCaducados);
-router.get('/inventario', InventarioController.listarMedicamentos);
+router.post('/inventarios', InventarioController.agregarMedicamento);
+router.put('/inventarios', InventarioController.actualizarCantidad);
+router.delete('/inventarios/caducados', InventarioController.eliminarMedicamentosCaducados);
+router.get('/inventarios', InventarioController.listarMedicamentos);
+
+
 
 // Rutas de pacientes
 router.post('/pacientes', PacienteController.registrarPaciente);

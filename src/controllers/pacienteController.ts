@@ -6,8 +6,12 @@ class PacienteController {
         try {
             await PacienteModel.registrarPaciente(req.body);
             res.status(201).send('Paciente registrado');
-        } catch (error) {
-            res.status(500).send(error.message);
+        } catch (error: unknown) {
+            if (error instanceof Error) {
+                res.status(500).send(error.message);
+            } else {
+                res.status(500).send('An unknown error occurred.');
+            }
         }
     }
 
@@ -15,8 +19,12 @@ class PacienteController {
         try {
             await PacienteModel.agregarPrescripcion(req.body);
             res.status(201).send('Prescripción agregada');
-        } catch (error) {
-            res.status(500).send(error.message);
+        } catch (error: unknown) {
+            if (error instanceof Error) {
+                res.status(500).send(error.message);
+            } else {
+                res.status(500).send('An unknown error occurred.');
+            }
         }
     }
 
@@ -25,8 +33,12 @@ class PacienteController {
             const { pacienteId } = req.params;
             const prescripciones = await PacienteModel.listarPrescripciones(pacienteId);
             res.status(200).json(prescripciones);
-        } catch (error) {
-            res.status(500).send(error.message);
+        } catch (error: unknown) {
+            if (error instanceof Error) {
+                res.status(500).send(error.message);
+            } else {
+                res.status(500).send('An unknown error occurred.');
+            }
         }
     }
 }

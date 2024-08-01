@@ -3,7 +3,7 @@ CREATE DATABASE inventario_medico;
 USE inventario_medico;
 
 CREATE TABLE medicamentos (
-    id VARCHAR(255) PRIMARY KEY,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(255) NOT NULL,
     cantidad INT NOT NULL,
     fechaDeCaducidad DATE NOT NULL,
@@ -11,16 +11,16 @@ CREATE TABLE medicamentos (
 );
 
 CREATE TABLE pacientes (
-    id VARCHAR(255) PRIMARY KEY,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(255) NOT NULL,
     edad INT NOT NULL,
     historialMedico TEXT
 );
 
 CREATE TABLE prescripciones (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    pacienteId VARCHAR(255),
-    medicamentoId VARCHAR(255),
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    pacienteId INT,
+    medicamentoId INT,
     dosis VARCHAR(255),
     frecuencia VARCHAR(255),
     duracion VARCHAR(255),

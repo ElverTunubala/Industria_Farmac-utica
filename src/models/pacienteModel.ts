@@ -1,3 +1,4 @@
+// import pool from '../config/db';
 import pool from '../config/db';
 
 interface Paciente {

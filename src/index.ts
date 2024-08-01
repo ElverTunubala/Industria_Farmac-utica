@@ -1,25 +1,24 @@
-import express from 'express';
-import bodyParser from 'body-parser';
-import router from './routes/routes';
+import express from "express";
+import bodyParser from "body-parser";
+import router from "./routes/routes";
 
 const app = express();
-const port = 3000;
+const port = 4000;
 
 app.use(bodyParser.json());
-app.use('/api', router);
+app.use("/api", router);
 
 app.listen(port, () => {
-    console.log(`Servidor ejecutándose en http://localhost:${port}`);
+  console.log(`Servidor ejecutándose en http://localhost:${port}`);
 });
 
 // lo que debo tener instalado
 //npm init -y
-//npm install typescript ts-node @types/node express @types/express mysql2 @types/mysql2 body-parser
+//npm install @types/node express @types/express mysql2 @types/mysql2 body-parser
 
 // para correr el proyecto
-//tsc  
+//tsc
 //node dist/app.js
-
 
 // esto va en tsconfig.json
 // {
@@ -33,4 +32,3 @@ app.listen(port, () => {
 //     },
 //     "include": ["src"]
 //   }
-  

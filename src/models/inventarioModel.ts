@@ -1,3 +1,4 @@
+// import pool from '../config/db';
 import pool from '../config/db';
 
 interface Medicamento {
@@ -26,6 +27,7 @@ class InventarioModel {
 
     static async listarMedicamentos(): Promise<Medicamento[]> {
         const [rows] = await pool.query('SELECT * FROM medicamentos');
+        
         return rows as Medicamento[];
     }
 }
