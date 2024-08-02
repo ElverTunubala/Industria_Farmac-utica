@@ -1,16 +1,19 @@
 // import pool from '../config/db';
+// import Joi from 'joi';
 import pool from '../config/db';
 
+
 interface Medicamento {
-    id: string;
+    id: number;
     nombre: string;
     cantidad: number;
     fechaDeCaducidad: Date;
     precio: number;
 }
 
+//en el metodo agregarMedicamneto no agregue Promise<void> por que ya con el async await es de tipo promesa.
 class InventarioModel {
-    static async agregarMedicamento(medicamento: Medicamento): Promise<void> {
+    static async agregarMedicamento(medicamento: Medicamento){
         const query = 'INSERT INTO medicamentos SET ?';
         await pool.query(query, medicamento);
     }
@@ -25,9 +28,8 @@ class InventarioModel {
         await pool.query(query);
     }
 
-    static async listarMedicamentos(): Promise<Medicamento[]> {
+    static async listarMedicamentos() {
         const [rows] = await pool.query('SELECT * FROM medicamentos');
-        
         return rows as Medicamento[];
     }
 }

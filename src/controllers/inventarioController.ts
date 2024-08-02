@@ -5,7 +5,11 @@ class InventarioController {
     static async agregarMedicamento(req: Request, res: Response) {
         try {
             await InventarioModel.agregarMedicamento(req.body);
-            res.status(201).send('Medicamento agregado');
+            res.status(201).send({
+                message: "Successfully created",
+                data: req.body
+            });
+
         } catch (error: unknown) {
             if (error instanceof Error) {
                 res.status(500).send(error.message);
@@ -26,13 +30,16 @@ class InventarioController {
             } else {
                 res.status(500).send('An unknown error occurred.');
             }
-        } // Asegúrate de cerrar el bloque try-catch aquí
-    } // Aquí se cierra el método actualizarCantidad
+        } 
+    } 
 
     static async eliminarMedicamentosCaducados(_req: Request, res: Response) {
         try {
             await InventarioModel.eliminarMedicamentosCaducados();
-            res.status(200).send('Medicamentos caducados eliminados');
+            res.status(200).send({
+                message: "expired medications deleted",
+            });
+
         } catch (error: unknown) {
             if (error instanceof Error) {
                 res.status(500).send(error.message);
@@ -46,6 +53,7 @@ class InventarioController {
         try {
             const medicamentos = await InventarioModel.listarMedicamentos();
             res.status(200).json(medicamentos);
+
         } catch (error: unknown) {
             if (error instanceof Error) {
                 res.status(500).send(error.message);

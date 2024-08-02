@@ -2,7 +2,7 @@
 import pool from '../config/db';
 
 interface Paciente {
-    id: string;
+    id: number;
     nombre: string;
     edad: number;
     historialMedico: string[];

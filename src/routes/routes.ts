@@ -1,4 +1,3 @@
-// import { Router } from 'express';
 import { Router } from "express";
 
 import InventarioController from '../controllers/inventarioController';
